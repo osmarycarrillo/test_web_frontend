@@ -1,0 +1,260 @@
+@mixin font($font-family, $font-file) {
+  @font-face {
+    font-family: $font-family;
+    src: url($font-file+".ttf");
+    src: url($font-file+".ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+  }
+}
+
+@include font("Montserrat-Bold", "fonts/Montserrat-Bold");
+@include font("Montserrat-ExtraBold", "fonts/Montserrat-ExtraBold");
+@include font("Montserrat-Regular", "fonts/Montserrat-Regular");
+
+@mixin fontNav {
+  font-family: Montserrat-Bold;
+  font-size: 1em;
+  color: gray;
+}
+@mixin fontButton {
+  font-family: Montserrat-ExtraBold;
+  color: white;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.35em 1.2em;
+}
+
+body {
+  background: #000000;
+  padding: 0%;
+  margin: 0%;
+}
+
+nav {
+  background: #151619;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  z-index: 999;
+  @include fontNav();
+  .logo {
+    position: absolute;
+    top: 11px;
+    left: 9px;
+    img {
+      width: 80%;
+    }
+  }
+}
+
+.forma {
+  display: block;
+}
+#rombo {
+  width: 0;
+  height: 0;
+  border: 50px solid transparent;
+  border-bottom-color: #151619;
+  position: relative;
+  top: -50px;
+}
+
+#rombo:after {
+  content: "";
+  position: absolute;
+  left: -50px;
+  top: 50px;
+  width: 0;
+  height: 0;
+  border: 50px solid transparent;
+  border-top-color: #151619;
+}
+
+.button {
+  background: #3abeef;
+  border-radius: 5px;
+  padding: 0.35em 1.2em;
+  margin: auto;
+  @include fontButton();
+  transition: all 0.2s;
+  :hover {
+    color: #000000;
+  }
+}
+
+@media all and (max-width: 30em) {
+  .button {
+    width: 20%;
+    display: block;
+    position: absolute;
+    top: 4%;
+    right: 3%;
+    font-size: 10%;
+  }
+}
+
+.main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  overflow: hidden;
+  .banner {
+    text-align: center;
+    img {
+      width: 50%;
+      margin-top: 2%;
+    }
+    
+    p {
+      font-family: Montserrat-Regular;
+      color: white;
+      font-size: 0.5em;
+      margin-bottom: 2%;
+    }
+  }
+  .banner {
+    -webkit-transform: translate(0, 0);
+    -webkit-transition: -webkit-transform 500ms;
+
+    transform: translate(0, 0);
+    transition: transform 500ms;
+  }
+
+  .banner.move {
+    -webkit-transform: translate(100px, 100px);
+    transform: translate(100px, 100px);
+  }
+
+  .modeling-tool {
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 2% 0 2% 0;
+    img {
+      margin: 2%;
+      width: 40%;
+    }
+  }
+  .content {
+    margin: auto;
+    padding: 5%;
+    h2 {
+      margin: 2%;
+      font-family: Montserrat-Bold;
+      font-size: 2em;
+      color: white;
+      text-align: left;
+      padding-bottom: 1%;
+    }
+    p {
+      margin: 2%;
+      font-family: Montserrat-Regular;
+      font-size: 1em;
+      color: white;
+      text-align: justify;
+    }
+    h3 {
+      font-family: Montserrat-Bold;
+      font-size: 1em;
+      color: #fe6b20;
+      text-align: initial;
+    }
+    ul li {
+      list-style: square;
+      font-family: Montserrat-Regular;
+      font-size: 0.8em;
+      color: white;
+      text-align: justify;
+    }
+  }
+  .animation {
+    text-align: center;
+    background: #000000;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 2% 0 2% 0;
+    img {
+      margin: 2%;
+      width: 40%;
+    }
+  }
+
+  .footer {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    text-align: center;
+    padding: 5%;
+
+    .row {
+      width: 40%;
+      h4 {
+        font-family: Montserrat-Bold;
+        font-size: 1em;
+        color: #ffffff;
+        text-align: initial;
+      }
+      img {
+        width: 40%;
+      }
+      ul {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        display: inline;
+        li {
+          list-style: none;
+          text-align: left;
+          font-family: Montserrat-Regular;
+          font-size: 0.8em;
+          color: white;
+        }
+      }
+      .social {
+        width: 10%;
+        float: left;
+        padding: 2%;
+      }
+    }
+  }
+}
+
+// animations
+.word {
+    font-family: Montserrat-Bold;
+    font-size: 3em;
+    color: orangered;
+
+  :before {
+    content: "";
+    background-color: #a16b6b;
+    width: 1px;
+    position: absolute;
+    right: 7px;
+    animation: blinkNaim 500ms linear infinite;
+  }
+}
+
+/* simple "from > to" */
+@keyframes move {
+    from {
+        left: 5%;
+    }
+    to {
+        left: 85%;
+    }
+  }
+  
+  
+  /* assign animation to ball element */
+  .ball {
+    animation: 1s move;
+  }
+  
